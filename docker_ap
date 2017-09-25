@@ -137,7 +137,7 @@ init () {
         echo -e "[+] Building the image ${GREEN}$DOCKER_IMAGE${NC} (Grab a coffee...)"
         if [ "$ARCH" == "armv6l" ]
         then
-            docker build -q --rm -t $DOCKER_IMAGE -f "$PATHSCRIPT"/build/Dockerfile_armv6 .
+            docker build --rm -t $DOCKER_IMAGE -f "$PATHSCRIPT"/build/Dockerfile_armv6 .
 	elif [ "$ARCH" == "armv6l" ]
         then
             docker build -q --rm -t $DOCKER_IMAGE -f "$PATHSCRIPT"/build/Dockerfile_armv7 .
