@@ -46,12 +46,16 @@ pushd "$(dirname "$0")" > /dev/null
 PATHSCRIPT=$(pwd)
 popd > /dev/null
 
-if [ "$ARCH" == "armv7l" ]
+
+if [ "$ARCH" == "armv6l" ]
 then
-    DOCKER_IMAGE="fgg89/armhf-docker-ap"
+    DOCKER_IMAGE="azcoigreach/arm-v6-docker-ap"
+elif [ "$ARCH" == "armv7l" ]
+then
+    DOCKER_IMAGE="azcoigreach/arm-v7-docker-ap"
 elif [ "$ARCH" == "x86_64" ]
 then
-    DOCKER_IMAGE="fgg89/docker-ap"
+    DOCKER_IMAGE="azcoigreach/docker-ap"
 else
     echo "Currently supported architectures are x86_64 and armv7. Exiting..."
     exit 1
@@ -131,7 +135,10 @@ init () {
         echo -e "${BLUE}[INFO]${NC} Docker image ${RED}$DOCKER_IMAGE${NC} not found"
         # Option 1: Building
         echo -e "[+] Building the image ${GREEN}$DOCKER_IMAGE${NC} (Grab a coffee...)"
-        if [ "$ARCH" == "armv7l" ]
+        if [ "$ARCH" == "armv6l" ]
+        then
+            docker build -q --rm -t $DOCKER_IMAGE -f "$PATHSCRIPT"/build/Dockerfile_armv6 .
+	elif [ "$ARCH" == "armv6l" ]
         then
             docker build -q --rm -t $DOCKER_IMAGE -f "$PATHSCRIPT"/build/Dockerfile_armv7 .
         elif [ "$ARCH" == "x86_64" ]
