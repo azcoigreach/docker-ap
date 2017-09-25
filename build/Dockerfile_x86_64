@@ -4,7 +4,7 @@
 # https://github.com/phusion/baseimage-docker/blob/master/Changelog.md
 # for a list of version numbers.
 FROM ubuntu:14.04
-MAINTAINER fgg89
+MAINTAINER azcoigreach
 
 # Update the repos
 RUN apt-get update && apt-get upgrade -y
